@@ -1,0 +1,15 @@
+services:
+  # ========================
+  # FastAPI Backend
+  # ========================
+  backend:
+    build: ./backend
+    container_name: finance_backend
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: sqlite+aiosqlite:///./finance.db
+      SECRET_KEY: your-secret-key-change-in-production
+    volumes:
+      - ./backend:/app
+    restart: unless-stopped
